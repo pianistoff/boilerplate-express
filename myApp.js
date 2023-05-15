@@ -13,4 +13,8 @@ app.get("/", (_, res) => {
 
 app.use("/public", express.static(publicPath));
 
+app.get("/json", (_, res) => {
+  res.json({ message: "Hello json" });
+});
+
 module.exports = app;
