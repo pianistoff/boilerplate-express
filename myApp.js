@@ -1,3 +1,4 @@
+require("dotenv").config();
 let express = require("express");
 let app = express();
 const path = require("path");
@@ -14,7 +15,10 @@ app.get("/", (_, res) => {
 app.use("/public", express.static(publicPath));
 
 app.get("/json", (_, res) => {
-  res.json({ message: "Hello json" });
+  res.json({
+    message:
+      process.env.MESSAGE_STYLE === "uppercase" ? "HELLO JSON" : "Hello json",
+  });
 });
 
 module.exports = app;
