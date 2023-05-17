@@ -9,6 +9,17 @@ const publicPath = path.join(__dirname, process.env.PUBLIC_PATH);
 
 console.log("Hello World");
 
+app.get(
+  "/now",
+  (req, _, next) => {
+    req.time = new Date().toString();
+    next();
+  },
+  (req, res) => {
+    res.send({ time: req.time });
+  }
+);
+
 app.use((req, _, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
