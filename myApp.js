@@ -1,4 +1,5 @@
 require("dotenv").config();
+const exp = require("constants");
 let express = require("express");
 let app = express();
 const path = require("path");
@@ -7,6 +8,11 @@ const filePath = path.join(__dirname, process.env.FILE_PATH);
 const publicPath = path.join(__dirname, process.env.PUBLIC_PATH);
 
 console.log("Hello World");
+
+app.use((req, _, next) => {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+});
 
 app.get("/", (_, res) => {
   res.sendFile(filePath);
