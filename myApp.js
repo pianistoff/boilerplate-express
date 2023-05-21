@@ -9,6 +9,10 @@ const publicPath = path.join(__dirname, process.env.PUBLIC_PATH);
 
 console.log("Hello World");
 
+app.route("/name").get((req, res) => {
+  res.send({ name: `${req.query.first} ${req.query.last}` });
+});
+
 app.get("/:word/echo", (req, res) => {
   res.send({ echo: req.params.word });
 });
