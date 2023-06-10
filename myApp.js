@@ -12,9 +12,14 @@ console.log("Hello World");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.route("/name").get((req, res) => {
-  res.send({ name: `${req.query.first} ${req.query.last}` });
-});
+app
+  .route("/name")
+  .get((req, res) => {
+    res.send({ name: `${req.query.first} ${req.query.last}` });
+  })
+  .post((req, res) => {
+    res.send({ name: `${req.body.first} ${req.body.last}` });
+  });
 
 app.get("/:word/echo", (req, res) => {
   res.send({ echo: req.params.word });
