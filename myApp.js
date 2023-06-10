@@ -3,11 +3,14 @@ const exp = require("constants");
 let express = require("express");
 let app = express();
 const path = require("path");
+const bodyParser = require("body-parser");
 
 const filePath = path.join(__dirname, process.env.FILE_PATH);
 const publicPath = path.join(__dirname, process.env.PUBLIC_PATH);
 
 console.log("Hello World");
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.route("/name").get((req, res) => {
   res.send({ name: `${req.query.first} ${req.query.last}` });
